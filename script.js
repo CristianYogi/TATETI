@@ -5,9 +5,26 @@ const cuadrados = document.getElementsByClassName('cuadrado')
 const botonContinuar = document.getElementById('boton')
 const columnas = document.getElementsByClassName('columna')
 const menuDificultad = document.getElementById('menu-dificultad')
+menuDificultad.style="display:none;"
 const botonMostarMenu = document.getElementById('dificultad')
+const botonesDificultad = document.getElementsByClassName('opcion')
+const botonEmpezar = document.getElementById('empezar')
+
+let seleccionDificultad = document.getElementById('facil')
 botonMostarMenu.addEventListener('click', () =>{
-    menuDificultad.style="display:flex;"
+
+    if(menuDificultad.style.display == 'none'){
+        menuDificultad.style="display:flex;"
+    }else{
+        menuDificultad.style="display:none;"
+        for (let i = 0; i < botonesDificultad.length; i++) {
+            if(botonesDificultad[i].classList.contains('seleccion')){
+                botonesDificultad[i].classList.toggle('seleccion')
+            }
+        }
+        
+        seleccionDificultad.classList.toggle('seleccion')
+    }
 })
 botonContinuar.addEventListener('click',reiniciar,false)
 
@@ -34,8 +51,10 @@ const mensageFinal = {
     3 : 'Empate'
 }
 
-const botonesDificultad = document.getElementsByClassName('opcion')
-const botonEmpezar = document.getElementById('empezar')
+
+
+
+
 botonEmpezar.addEventListener('click',(elemento) =>{
     let puntuacion = document.getElementsByClassName('cantidad-puntuacion')
     for (let i = 0; i < puntuacion.length; i++) {
@@ -44,10 +63,12 @@ botonEmpezar.addEventListener('click',(elemento) =>{
     for (let j = 0; j < botonesDificultad.length; j++) {
         if(botonesDificultad[j].classList.contains('seleccion')){
             dificultad = botonesDificultad[j].id
+            seleccionDificultad = botonesDificultad[j]
             break
         }
     }
     menuDificultad.style="display:none;"
+    
     reiniciar()
 })
 
@@ -62,6 +83,7 @@ function obtenerDificultad(elemento){
             botonesDificultad[i].classList.toggle('seleccion')
         }
     }
+    
     boton.classList.toggle('seleccion')
     
 }
@@ -162,15 +184,12 @@ function eventoClick(elemento){
         if (!finalizo){
             turnoBot()
         }
-        
-        
     }
 }
 
 
 function turnoBot(){
-
-        
+ 
     let posicion = calcularMovimiento(matrizTablero)
     let id = encontrarId(posicion)
     
@@ -179,8 +198,6 @@ function turnoBot(){
     let estado = comprobarEstado(matrizTablero, turno)
     comprobarGanador(estado)
         
-    
-
 }
 
 //Comprueba quien gano, si fue enmapte o si todavia se puede seguir jugando
@@ -216,7 +233,6 @@ function comprobarEstado(matriz, turnoActual){
         ganador = turnoActual
     }
 
-    
     if(ganador == 0 && !posicionLibre){
         ganador = -1
     }
@@ -371,7 +387,7 @@ function facil_normal(puntuacionesOrdenado,maximo){
         posiciones.push(puntuacionesOrdenado.pop())
         cont += 1
     }
-    console.log(posiciones)
+
     let numRandom = random(0, posiciones.length - 1)
     return posiciones[numRandom].posicion
 }
