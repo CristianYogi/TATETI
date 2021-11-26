@@ -1,20 +1,27 @@
 // import Bot from "./bot"
 
 const tablero = document.getElementById('tablero')
-const cuadrados = tablero.children
+const cuadrados = document.getElementsByClassName('cuadrado')
 const botonContinuar = document.getElementById('boton')
+const columnas = document.getElementsByClassName('columna')
+const menuDificultad = document.getElementById('menu-dificultad')
+const botonMostarMenu = document.getElementById('dificultad')
+botonMostarMenu.addEventListener('click', () =>{
+    menuDificultad.style="display:flex;"
+})
 botonContinuar.addEventListener('click',reiniciar,false)
 
-let dificultad = 1
 //1 = JUGADOR, 5 = BOT
 let turno = 1
 let finalizo = false
-
+let quienGano = 0
 let matrizTablero = [
     [0,0,0],
     [0,0,0],
     [0,0,0]
 ]
+
+let dificultad = 'facil'
 
 const turnoFicha = {
     1 : 'cruz',
@@ -27,10 +34,39 @@ const mensageFinal = {
     3 : 'Empate'
 }
 
-for (let i = 0; i < cuadrados.length; i++) {
-    if (cuadrados[i].id == 'cartel'){
-        continue
+const botonesDificultad = document.getElementsByClassName('opcion')
+const botonEmpezar = document.getElementById('empezar')
+botonEmpezar.addEventListener('click',(elemento) =>{
+    let puntuacion = document.getElementsByClassName('cantidad-puntuacion')
+    for (let i = 0; i < puntuacion.length; i++) {
+        puntuacion[i].innerText = 0
     }
+    for (let j = 0; j < botonesDificultad.length; j++) {
+        if(botonesDificultad[j].classList.contains('seleccion')){
+            dificultad = botonesDificultad[j].id
+            break
+        }
+    }
+    menuDificultad.style="display:none;"
+    reiniciar()
+})
+
+for (let i = 0; i < botonesDificultad.length; i++) {
+    botonesDificultad[i].addEventListener('click',obtenerDificultad,false)
+}
+
+function obtenerDificultad(elemento){
+    let boton = elemento.target
+    for (let i = 0; i < botonesDificultad.length; i++) {
+        if (botonesDificultad[i].classList.contains('seleccion')){
+            botonesDificultad[i].classList.toggle('seleccion')
+        }
+    }
+    boton.classList.toggle('seleccion')
+    
+}
+
+for (let i = 0; i < cuadrados.length; i++) {
     cuadrados[i].addEventListener('click', eventoClick, false)
 }
 
@@ -48,6 +84,7 @@ function copiarMatriz(tablero){
     });
     return clon
 }
+
 
 
 //Permite encontrar los subindices(matriz) de un cuadrado con su ID
@@ -92,6 +129,7 @@ function sumarPuntuacion(jugador){
 function comprobarGanador(estado){
     if (estado > 0){
         finalizo = true
+        quienGano = estado
         mostrarCartelFinal(estado)
         
         sumarPuntuacion(estado)
@@ -102,6 +140,7 @@ function comprobarGanador(estado){
         
     }else{
         cambiarTurno()
+        // cambiarColorTurno()
     }
 }
 
@@ -130,6 +169,7 @@ function eventoClick(elemento){
 
 
 function turnoBot(){
+
         
     let posicion = calcularMovimiento(matrizTablero)
     let id = encontrarId(posicion)
@@ -202,7 +242,6 @@ function reiniciar(){
     //     cartel.style="display:none;" 
     //   }, 1000);
 
-    turno = 1
     finalizo = false
     matrizTablero = [
         [0,0,0],
@@ -211,6 +250,28 @@ function reiniciar(){
     ]
 
     limpiarTablero()
+
+    for (let i = 0; i < columnas.length; i++) {
+        if(columnas[i].classList.contains('activo')){
+            columnas[i].classList.toggle('activo')
+        }
+    }
+
+    if(quienGano == 5){
+        turno = 5
+        primerTurnoBot()
+        cambiarTurno()
+    }else if (quienGano == 1){
+        turno = 1
+    }else{
+        if (turno == 5){
+            primerTurnoBot()
+            cambiarTurno()
+        }else{
+            turno = 1
+        }
+    }
+    quienGano = 0
 }
 
 //Se encarga de obtener la puntuacion de un movimiento para el bot. Entre mayor el numero mejor es ese movimiento.
@@ -284,19 +345,78 @@ function calcularMovimiento(tablero){
         }
         
     }
-
+    let puntuacionesOrdenado = sortNumbers(puntuaciones)
     let posicion
-    let puntos = -10000
-    puntuaciones.forEach(element => {
-        if (element.puntos > puntos){
-            posicion = element.posicion
-            puntos = element.puntos
-        }
-    });
+    if(dificultad == 'dificil'){
+       posicion =  puntuacionesOrdenado[puntuacionesOrdenado.length - 1].posicion
+    }else if(dificultad == 'normal'){
+        posicion = facil_normal(puntuacionesOrdenado, 2)
+    }else{
+        posicion = facil_normal(puntuacionesOrdenado, 5)
+    }
+
+    
 
     return posicion
 }
 
+function facil_normal(puntuacionesOrdenado,maximo){
+    let posiciones = []
+    let cont = 0
+    
+    while(cont < maximo){
+        if (cont >= puntuacionesOrdenado.length){
+            break
+        }
+        posiciones.push(puntuacionesOrdenado.pop())
+        cont += 1
+    }
+    console.log(posiciones)
+    let numRandom = random(0, posiciones.length - 1)
+    return posiciones[numRandom].posicion
+}
+
+// function normal(puntuacionesOrdenado){
+//     let posiciones = []
+//     for (let i = 0; i < 3; i++) {
+//         posiciones.push(puntuacionesOrdenado.pop())
+//     }
+//     let numRandom = random(0, posiciones.length - 1)
+//     return posiciones[numRandom].posicion
+// }
+
+// function dificil(){
+//     let posicion
+//     let puntos = -10000
+//     puntuaciones.forEach(element => {
+//         if (element.puntos > puntos){
+//             posicion = element.posicion
+//             puntos = element.puntos
+//         }
+//     });
+//     return posicion
+// }
+
+function sortNumbers(numArray){
+
+    numArray.sort(function(a, b) {
+      return a.puntos - b.puntos;
+    });
+
+    return numArray
+}
+
+function primerTurnoBot(){
+
+    let numRandom = random(0, 8)
+    let elemento = document.getElementById(numRandom)
+    ponerFicha(elemento)
+}
+
+
+function random(min, max) {
+    return Math.floor((Math.random() * (max - min + 1)) + min);
+}
 
 function mostrarCartelFinal(ganador){
     let cartel = document.getElementById("cartel")
@@ -311,3 +431,12 @@ function mostrarCartelFinal(ganador){
     cartel.style="display:flex;"
 
 }
+
+
+// function cambiarColorTurno(){
+
+//     for (let i = 0; i < columnas.length; i++) {
+//         columnas[i].classList.toggle('activo') 
+//     }
+
+// }
