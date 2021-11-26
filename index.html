@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>TATETI</title>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1>TATETI</h1>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="columna" id="j1">
+
+            <p class="jugador">J1</p>
+            <div class="separador"></div>
+            <p id = 'puntuacion-J1' class="cantidad-puntuacion">0</p>
+
+        </div>
+
+        <!-- TABLERO -->
+        <div id="tablero">
+            <div id="0" class="cuadrado"></div>
+            <div id="1" class="cuadrado"></div>
+            <div id="2" class="cuadrado"></div>
+            <div id="3" class="cuadrado"></div>
+            <div id="4" class="cuadrado"></div>
+            <div id="5" class="cuadrado"></div>
+            <div id="6" class="cuadrado"></div>
+            <div id="7" class="cuadrado"></div>
+            <div id="8" class="cuadrado"></div>
+            <div class="hide" id="cartel">
+                <p id="mensaje-final"></p>
+                <div id="boton">CONTINUAR</div>
+            </div>
+        </div>
+
+        <!-- COLUMNA DERECHA -->
+        <div class="columna" id="bot">
+
+            <p class="jugador">BOT</p>
+            <div class="separador"></div>
+            <p id = 'puntuacion-BOT' class="cantidad-puntuacion">0</p>
+
+        </div>
+    </main>
+
+    <script  src="./script.js"></script>
+</body>
+</html>

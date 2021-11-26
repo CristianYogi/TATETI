@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="130.00034mm"
+   height="130.00034mm"
+   viewBox="0 0 130.00034 130.00034"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="reloj_claro.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="false"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="28.991378"
+     inkscape:cy="309.71277"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-39.122675,-40.516389)">
+    <path
+       id="path565"
+       style="fill:#f8edeb;stroke-width:1.05827;fill-opacity:1"
+       d="M 245.66992 0 A 245.66929 245.66929 0 0 0 0 245.66992 A 245.66929 245.66929 0 0 0 245.66992 491.33984 A 245.66929 245.66929 0 0 0 491.33984 245.66992 A 245.66929 245.66929 0 0 0 245.66992 0 z M 243.66992 37.796875 A 207.87402 207.87402 0 0 1 451.54492 245.67188 A 207.87402 207.87402 0 0 1 243.66992 453.54492 A 207.87402 207.87402 0 0 1 35.796875 245.67188 A 207.87402 207.87402 0 0 1 243.66992 37.796875 z M 387.44336 114.37109 L 257.67383 213.0332 A 37.273447 37.273447 0 0 0 239.66992 208.39453 A 37.273447 37.273447 0 0 0 202.39648 245.66797 A 37.273447 37.273447 0 0 0 239.66992 282.94141 A 37.273447 37.273447 0 0 0 244.02148 282.66211 L 329.56836 398.8418 L 354.77539 380.28125 L 270.76562 266.18945 A 37.273447 37.273447 0 0 0 276.94336 245.66797 A 37.273447 37.273447 0 0 0 276.18555 238.19336 L 406.3457 139.23242 L 387.44336 114.37109 z "
+       transform="matrix(0.26458333,0,0,0.26458333,39.122675,40.516389)" />
+  </g>
+</svg>
