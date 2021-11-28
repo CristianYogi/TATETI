@@ -184,7 +184,7 @@ main{
 
     background-color: snow;
 
-    /* border: 1px solid black; */
+    box-shadow: 0px 0px 3px 1px rgb(190, 190, 190);
     
     position: absolute;
     left: 25%;
@@ -201,18 +201,18 @@ main{
 #boton{
 
 
-    background-color: snow;
+    background-color: #f0efeb;
 
-    box-shadow: 0px 0px 3px 1px black;
+    box-shadow: 0px 0px 3px 1px rgb(190, 190, 190);
     /* border: 1px solid black; */
-
+    font-weight: bolder;
     padding: 10px;
-
+    font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
 
 #boton:hover{
-    background-color: silver;
+    background-color: #8d99ae;
 }
 
 /* MENU DIFICULTAD */
@@ -234,13 +234,15 @@ main{
 
     z-index: 1;
 
-    border: 1px solid blue;
+    box-shadow: 0px 0px 5px 1px black;
     background-color: snow;
 }
 
 #menu-dificultad h2{
+    
+    font-size: 2.5rem;
     font-weight: bolder;
-    text-decoration: underline;
+    
 }
 
 #contenedor-opciones{
@@ -251,31 +253,33 @@ main{
 }
 
 .opcion{
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    background-color: #f0efeb;
     border-radius: 50px;
     padding: 10px;
     cursor: pointer;
+    box-shadow: 0px 0px 3px 1px rgb(190, 190, 190);
 }
 
 .opcion:hover{
-    background-color: springgreen;
+    background-color: #358f80;
 }
 
 .seleccion{
-    border-color: springgreen;
-    background-color: black;
+    background-color: #358f80;
     color: snow;
 }
 
 #empezar{
     font-weight: bolder;
     padding: 10px;
-    border: 1px solid black;
+    background-color: #dee2e6;
+    box-shadow: 0px 0px 3px 1px rgb(190, 190, 190);
     cursor: pointer;
 }
 
 #empezar:hover{
-    background-color: steelblue;
+    background-color: #8d99ae;
 }
 
 #dificultad{
@@ -288,7 +292,7 @@ main{
     position: absolute;
     left: 1%;
     top: 26%;
-
+    box-shadow: 0px 0px 3px 1px rgb(190, 190, 190);
     background-color: #dee2e6;
     
     font-weight: bolder;
