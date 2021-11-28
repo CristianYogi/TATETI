@@ -27,7 +27,7 @@ botonMostarMenu.addEventListener('click', () =>{
     }
 })
 botonContinuar.addEventListener('click',reiniciar,false)
-
+let botPrimerTurno = true
 //1 = JUGADOR, 5 = BOT
 let turno = 1
 let finalizo = false
@@ -268,7 +268,7 @@ function limpiarTablero(){
 }
 
 function reiniciar(){
-
+    botPrimerTurno = true
     let cartel = document.getElementById('cartel')
     cartel.style="display:none;"
     // setTimeout(() => {
@@ -383,7 +383,12 @@ function calcularMovimiento(tablero){
     if(dificultad == 'dificil'){
        posicion =  puntuacionesOrdenado[puntuacionesOrdenado.length - 1].posicion
     }else if(dificultad == 'normal'){
-        posicion = facil_normal(puntuacionesOrdenado, 2)
+        if (botPrimerTurno){
+            posicion = normal(puntuacionesOrdenado)
+            botPrimerTurno = false
+        }else{
+            posicion = puntuacionesOrdenado[puntuacionesOrdenado.length - 1].posicion
+        }
     }else{
         posicion = facil_normal(puntuacionesOrdenado, 5)
     }
@@ -391,6 +396,11 @@ function calcularMovimiento(tablero){
     
 
     return posicion
+}
+
+function normal (puntuacionesOrdenado){
+    let numRandom = random(0, puntuacionesOrdenado.length - 1)
+    return puntuacionesOrdenado[numRandom].posicion
 }
 
 function facil_normal(puntuacionesOrdenado,maximo){
