@@ -88,8 +88,25 @@ function obtenerDificultad(elemento){
     
 }
 
+function mouseEncima(elemento){
+    let cuadrado = elemento.target
+    if(!cuadrado.classList.contains('cruz') && !cuadrado.classList.contains('circulo') ){
+        cuadrado.style.backgroundImage= "url('img/cruz-opaco.svg')"
+    }
+    
+}
+
+function mouseFuera(elemento){
+    let cuadrado = elemento.target
+    if(!cuadrado.classList.contains('cruz') && !cuadrado.classList.contains('circulo')){
+        cuadrado.style.backgroundImage=""
+    }
+}
+
 for (let i = 0; i < cuadrados.length; i++) {
     cuadrados[i].addEventListener('click', eventoClick, false)
+    cuadrados[i].addEventListener('mouseover',mouseEncima, false)
+    cuadrados[i].addEventListener('mouseout',mouseFuera,false)
 }
 
 function cambiarTurno(){
@@ -175,7 +192,7 @@ function comprobarPosicionOcupado(cuadrado){
 }
 
 function eventoClick(elemento){
-    
+    elemento.target.style.backgroundImage = ""
     if (!finalizo && !comprobarPosicionOcupado(elemento.target)){
         ponerFicha(elemento.target)
         let estado = comprobarEstado(matrizTablero, turno)
